@@ -1,34 +1,49 @@
-# Strapi example
+Paldeck CMS
 
-This example deploys self-hosted version of [Strapi](https://strapi.io/). Internally it uses a PostgreSQL database to store the data.
+# 🚀 Getting started with Strapi
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/strapi?referralCode=milo)
+Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
 
-## ✨ Features
+### `develop`
 
-- Strapi
-- Postgres
+Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
 
-## 💁‍♀️ How to use
+```
+npm run develop
+# or
+yarn develop
+```
 
-- Click the Railway button 👆
-- Add the environment variables
-  - If you choose not to add the Cloudinary related environment variables, your media will not be persisted between deploys.
+### `start`
 
-## 💻 Developing locally
+Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
 
-When developing locally this Strapi template will connect to the Postgres server from its public [TCP Proxy](https://docs.railway.app/deploy/exposing-your-app#tcp-proxying)
+```
+npm run start
+# or
+yarn start
+```
 
-- Clone the repository locally
-- Install the dependencies with `yarn install` or `npm install`
-- Install the Railway CLI, instructions for that can be found [here](https://docs.railway.app/develop/cli#installation)
-    - If this is your first time using the CLI make sure to login with `railway login`
-- Within the local repository run `railway link` to link the local repository to the Strapi service on Railway
-- Start Strapi for development with `railway run yarn run develop` or `railway run npm run develop`
-    - This command run Strapi in development mode with the service variables available locally
-- Open your browser to `http://127.0.0.1:1337/admin`
+### `build`
 
-## 📝 Notes
+Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
 
-- After your app is deployed, visit the `/admin` endpoint to create your admin user.
-- Railway's filesystem is ephemeral which is why any changes to the filesystem are not persisted between deploys. This is why, this template uses Cloudinary for media storage.
+```
+npm run build
+# or
+yarn build
+```
+
+## ⚙️ Deployment
+
+Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+
+## 📚 Learn more
+
+- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
+- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
+- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
+- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
+- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+
+Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
