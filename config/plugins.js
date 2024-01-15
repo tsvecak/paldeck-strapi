@@ -16,6 +16,11 @@ module.exports = ({ env }) => ({
         upload: {},
         delete: {},
       },
+      breakpoints: {
+        large: 1920,
+        medium: 500,
+        thumbnail: 350,
+      },
     },
   },
 });
