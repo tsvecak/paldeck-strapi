@@ -4,7 +4,7 @@ module.exports = ({ env }) => ({
       jwtSecret: env('JWT_SECRET'),
     },
   },
-  upload: {
+  upload: env('NODE_ENV') === 'production' ? {
     config: {
       provider: 'cloudinary',
       providerOptions: {
@@ -21,6 +21,6 @@ module.exports = ({ env }) => ({
         medium: 500,
         thumbnail: 350,
       },
-    },
-  },
+    } 
+  }: {}
 });

@@ -473,7 +473,7 @@ export interface ApiPalPal extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    cover: Attribute.Media &
+    model: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -484,6 +484,30 @@ export interface ApiPalPal extends Schema.CollectionType {
       'manyToMany',
       'api::element.element'
     >;
+    media: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    sound: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    caption: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -8,7 +8,7 @@ module.exports = (config, { strapi }) => {
   // Add your own logic here.
   return async (ctx, next) => {
     ctx.query.populate = {
-      cover: {
+      model: {
         fields: ['name', 'alternativeText', 'caption', 'url'],
       },
       elements: {
