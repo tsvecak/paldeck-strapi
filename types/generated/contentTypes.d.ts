@@ -882,6 +882,12 @@ export interface ApiItemsDropItemsDrop extends Schema.CollectionType {
       'manyToMany',
       'api::pal.pal'
     >;
+    slug: Attribute.UID<'api::items-drop.items-drop', 'name'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -979,15 +985,20 @@ export interface ApiPalPal extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    partner_skills: Attribute.Relation<
-      'api::pal.pal',
-      'manyToMany',
-      'api::partner-skill.partner-skill'
-    >;
     items_drops: Attribute.Relation<
       'api::pal.pal',
       'manyToMany',
       'api::items-drop.items-drop'
+    >;
+    work_suitabilities: Attribute.Relation<
+      'api::pal.pal',
+      'manyToMany',
+      'api::work-suitability.work-suitability'
+    >;
+    partner_skills: Attribute.Relation<
+      'api::pal.pal',
+      'manyToMany',
+      'api::partner-skill.partner-skill'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1021,14 +1032,26 @@ export interface ApiPartnerSkillPartnerSkill extends Schema.CollectionType {
     };
   };
   attributes: {
-    Name: Attribute.String &
+    name: Attribute.String &
       Attribute.Unique &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    Description: Attribute.Text &
+    slug: Attribute.UID<'api::partner-skill.partner-skill', 'name'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icon: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1063,6 +1086,78 @@ export interface ApiPartnerSkillPartnerSkill extends Schema.CollectionType {
   };
 }
 
+export interface ApiWorkSuitabilityWorkSuitability
+  extends Schema.CollectionType {
+  collectionName: 'work_suitabilities';
+  info: {
+    singularName: 'work-suitability';
+    pluralName: 'work-suitabilities';
+    displayName: 'Work Suitability';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'api::work-suitability.work-suitability', 'name'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icon: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pals: Attribute.Relation<
+      'api::work-suitability.work-suitability',
+      'manyToMany',
+      'api::pal.pal'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::work-suitability.work-suitability',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::work-suitability.work-suitability',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::work-suitability.work-suitability',
+      'oneToMany',
+      'api::work-suitability.work-suitability'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1085,6 +1180,7 @@ declare module '@strapi/types' {
       'api::items-drop.items-drop': ApiItemsDropItemsDrop;
       'api::pal.pal': ApiPalPal;
       'api::partner-skill.partner-skill': ApiPartnerSkillPartnerSkill;
+      'api::work-suitability.work-suitability': ApiWorkSuitabilityWorkSuitability;
     }
   }
 }

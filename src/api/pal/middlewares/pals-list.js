@@ -12,7 +12,23 @@ module.exports = (config, { strapi }) => {
         fields: ['name', 'alternativeText', 'caption', 'url'],
       },
       elements: {
-        fields: ['name', 'color'],
+        fields: ['name','slug', 'color'],
+        populate: {
+          icon: {
+            fields: ['name', 'alternativeText', 'caption', 'url'],
+          }
+        }
+      },
+      partner_skills: {
+        fields: ['name', 'slug', 'description'],
+        populate: {
+          icon: {
+            fields: ['name', 'alternativeText', 'caption', 'url'],
+          }
+        }
+      },
+      work_suitabilities: {
+        fields: ['name', 'slug', 'description'],
         populate: {
           icon: {
             fields: ['name', 'alternativeText', 'caption', 'url'],
@@ -20,8 +36,13 @@ module.exports = (config, { strapi }) => {
         }
       },
       items_drops: {
-        fields: ['name', 'description']
-      }
+        fields: ['name', 'slug', 'description'],
+        populate: {
+          icon: {
+            fields: ['name', 'alternativeText', 'caption', 'url'],
+          }
+        }
+      },
     }
 
     await next();

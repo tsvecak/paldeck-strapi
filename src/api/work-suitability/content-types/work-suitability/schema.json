@@ -1,10 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "partner_skills",
+  "collectionName": "work_suitabilities",
   "info": {
-    "singularName": "partner-skill",
-    "pluralName": "partner-skills",
-    "displayName": "Partner Skill"
+    "singularName": "work-suitability",
+    "pluralName": "work-suitabilities",
+    "displayName": "Work Suitability",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -42,11 +43,12 @@
       "type": "text"
     },
     "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -57,7 +59,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::pal.pal",
-      "inversedBy": "partner_skills"
+      "inversedBy": "work_suitabilities"
     }
   }
 }
