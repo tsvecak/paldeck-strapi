@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "items_drops",
+  "info": {
+    "singularName": "items-drop",
+    "pluralName": "items-drops",
+    "displayName": "Items Drop",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "unique": true
+    },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "pals": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::pal.pal",
+      "inversedBy": "items_drops"
+    }
+  }
+}

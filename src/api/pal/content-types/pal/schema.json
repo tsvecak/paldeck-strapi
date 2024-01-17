@@ -103,6 +103,18 @@
         }
       },
       "type": "blocks"
+    },
+    "partner_skills": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::partner-skill.partner-skill",
+      "mappedBy": "pals"
+    },
+    "items_drops": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::items-drop.items-drop",
+      "mappedBy": "pals"
     }
   }
 }

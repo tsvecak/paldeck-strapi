@@ -19,6 +19,9 @@ module.exports = (config, { strapi }) => {
           }
         }
       },
+      items_drops: {
+        fields: ['name', 'description']
+      }
     }
 
     await next();
