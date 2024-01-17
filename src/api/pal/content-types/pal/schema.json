@@ -35,15 +35,6 @@
       "targetField": "name",
       "required": true
     },
-    "number": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "integer",
-      "unique": true
-    },
     "model": {
       "type": "media",
       "multiple": false,
@@ -64,12 +55,13 @@
       "inversedBy": "pals"
     },
     "media": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "videos"
       ],
-      "type": "media",
-      "multiple": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -77,11 +69,12 @@
       }
     },
     "sound": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "audios"
       ],
-      "type": "media",
-      "multiple": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -121,6 +114,15 @@
       "relation": "manyToMany",
       "target": "api::partner-skill.partner-skill",
       "mappedBy": "pals"
+    },
+    "number": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "unique": true
     }
   }
 }

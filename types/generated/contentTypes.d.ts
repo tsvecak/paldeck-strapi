@@ -943,13 +943,6 @@ export interface ApiPalPal extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    number: Attribute.Integer &
-      Attribute.Unique &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     model: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1000,6 +993,13 @@ export interface ApiPalPal extends Schema.CollectionType {
       'manyToMany',
       'api::partner-skill.partner-skill'
     >;
+    number: Attribute.String &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
