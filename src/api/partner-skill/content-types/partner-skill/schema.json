@@ -4,7 +4,8 @@
   "info": {
     "singularName": "partner-skill",
     "pluralName": "partner-skills",
-    "displayName": "Partner Skill"
+    "displayName": "Partner Skill",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -22,7 +23,7 @@
         }
       },
       "type": "string",
-      "unique": true
+      "unique": false
     },
     "slug": {
       "pluginOptions": {
@@ -31,7 +32,8 @@
         }
       },
       "type": "uid",
-      "targetField": "name"
+      "targetField": "name",
+      "required": true
     },
     "description": {
       "pluginOptions": {
@@ -42,11 +44,12 @@
       "type": "text"
     },
     "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true

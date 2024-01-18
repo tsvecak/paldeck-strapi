@@ -883,6 +883,7 @@ export interface ApiItemsDropItemsDrop extends Schema.CollectionType {
       'api::pal.pal'
     >;
     slug: Attribute.UID<'api::items-drop.items-drop', 'name'> &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1022,6 +1023,7 @@ export interface ApiPartnerSkillPartnerSkill extends Schema.CollectionType {
     singularName: 'partner-skill';
     pluralName: 'partner-skills';
     displayName: 'Partner Skill';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1033,13 +1035,13 @@ export interface ApiPartnerSkillPartnerSkill extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-      Attribute.Unique &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     slug: Attribute.UID<'api::partner-skill.partner-skill', 'name'> &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1112,6 +1114,7 @@ export interface ApiWorkSuitabilityWorkSuitability
         };
       }>;
     slug: Attribute.UID<'api::work-suitability.work-suitability', 'name'> &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
