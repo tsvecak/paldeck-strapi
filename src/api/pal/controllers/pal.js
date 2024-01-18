@@ -15,7 +15,7 @@ module.exports = createCoreController('api::pal.pal',
       console.log(result);
       result.data.sort((a,b) => ("" + a.attributes.number).localeCompare(b.attributes.number, undefined, {numeric: true})); 
 
-      return result.data;
+      return result;
     },
   })
 );
