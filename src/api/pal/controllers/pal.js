@@ -12,7 +12,6 @@ module.exports = createCoreController('api::pal.pal',
       ctx.query = { ...ctx.query, locale: "en" };
       const result = await super.find(ctx);
 
-      console.log(result);
       result.data.sort((a,b) => ("" + a.attributes.number).localeCompare(b.attributes.number, undefined, {numeric: true})); 
 
       return result;

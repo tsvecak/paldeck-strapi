@@ -6,4 +6,10 @@
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::element.element');
+module.exports = createCoreRouter('api::element.element', {
+  config: {
+    find: {
+      middlewares: ['api::element.ele-list'],
+    },
+  },
+ });
