@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "item_categories",
+  "collectionName": "item_sources",
   "info": {
-    "singularName": "item-category",
-    "pluralName": "item-categories",
-    "displayName": "Item Category",
+    "singularName": "item-source",
+    "pluralName": "item-sources",
+    "displayName": "Item Source",
     "description": ""
   },
   "options": {
@@ -26,7 +26,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::items-drop.items-drop",
-      "mappedBy": "item_categories"
+      "inversedBy": "item_sources"
     }
   }
 }

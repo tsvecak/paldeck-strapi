@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_pals_stats",
+  "info": {
+    "displayName": "stats",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

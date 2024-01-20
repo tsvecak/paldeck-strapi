@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "passive_skills",
+  "info": {
+    "singularName": "passive-skill",
+    "pluralName": "passive-skills",
+    "displayName": "Passive Skill",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid",
+      "targetField": "name"
+    },
+    "effect": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "neg-3",
+        "neg-2:",
+        "neg-1",
+        "none",
+        "plus-1",
+        "plus-2",
+        "plus-3"
+      ]
+    }
+  }
+}

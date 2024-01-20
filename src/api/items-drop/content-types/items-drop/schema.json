@@ -23,7 +23,8 @@
         }
       },
       "type": "string",
-      "unique": true
+      "unique": true,
+      "required": true
     },
     "description": {
       "pluginOptions": {
@@ -98,6 +99,20 @@
         "chests",
         "bushes"
       ]
+    },
+    "weight": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "decimal"
+    },
+    "item_sources": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::item-source.item-source",
+      "mappedBy": "items_drops"
     }
   }
 }

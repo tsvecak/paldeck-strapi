@@ -23,7 +23,8 @@
         }
       },
       "type": "string",
-      "unique": true
+      "unique": true,
+      "required": true
     },
     "slug": {
       "pluginOptions": {
@@ -125,11 +126,12 @@
       "unique": true
     },
     "habitat": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": true,
       "pluginOptions": {
         "i18n": {
           "localized": true

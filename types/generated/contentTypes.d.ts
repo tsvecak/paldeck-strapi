@@ -768,6 +768,82 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiActiveSkillsActiveSkills extends Schema.CollectionType {
+  collectionName: 'active_skills_list';
+  info: {
+    singularName: 'active-skills';
+    pluralName: 'active-skills-list';
+    displayName: 'Active Skills';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'api::active-skills.active-skills', 'name'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    elements: Attribute.Relation<
+      'api::active-skills.active-skills',
+      'manyToMany',
+      'api::element.element'
+    >;
+    ct: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    power: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::active-skills.active-skills',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::active-skills.active-skills',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::active-skills.active-skills',
+      'oneToMany',
+      'api::active-skills.active-skills'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiElementElement extends Schema.CollectionType {
   collectionName: 'elements';
   info: {
@@ -817,6 +893,11 @@ export interface ApiElementElement extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    active_skills: Attribute.Relation<
+      'api::element.element',
+      'manyToMany',
+      'api::active-skills.active-skills'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -853,8 +934,9 @@ export interface ApiItemCategoryItemCategory extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
-    slug: Attribute.UID<'api::item-category.item-category', 'name'>;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::item-category.item-category', 'name'> &
+      Attribute.Required;
     items_drops: Attribute.Relation<
       'api::item-category.item-category',
       'manyToMany',
@@ -871,6 +953,44 @@ export interface ApiItemCategoryItemCategory extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::item-category.item-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiItemSourceItemSource extends Schema.CollectionType {
+  collectionName: 'item_sources';
+  info: {
+    singularName: 'item-source';
+    pluralName: 'item-sources';
+    displayName: 'Item Source';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::item-source.item-source', 'name'> &
+      Attribute.Required;
+    items_drops: Attribute.Relation<
+      'api::item-source.item-source',
+      'manyToMany',
+      'api::items-drop.items-drop'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::item-source.item-source',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::item-source.item-source',
       'oneToOne',
       'admin::user'
     > &
@@ -896,6 +1016,7 @@ export interface ApiItemsDropItemsDrop extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
+      Attribute.Required &
       Attribute.Unique &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -947,6 +1068,17 @@ export interface ApiItemsDropItemsDrop extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    weight: Attribute.Decimal &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    item_sources: Attribute.Relation<
+      'api::items-drop.items-drop',
+      'manyToMany',
+      'api::item-source.item-source'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -989,6 +1121,7 @@ export interface ApiPalPal extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
+      Attribute.Required &
       Attribute.Unique &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1081,6 +1214,40 @@ export interface ApiPalPal extends Schema.CollectionType {
   };
 }
 
+export interface ApiPalStatsPalStats extends Schema.CollectionType {
+  collectionName: 'pal_stats_list';
+  info: {
+    singularName: 'pal-stats';
+    pluralName: 'pal-stats-list';
+    displayName: 'Pal Stats';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::pal-stats.pal-stats', 'name'> &
+      Attribute.Required;
+    icon: Attribute.Media;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::pal-stats.pal-stats',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::pal-stats.pal-stats',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPartnerSkillPartnerSkill extends Schema.CollectionType {
   collectionName: 'partner_skills';
   info: {
@@ -1099,6 +1266,8 @@ export interface ApiPartnerSkillPartnerSkill extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1147,6 +1316,137 @@ export interface ApiPartnerSkillPartnerSkill extends Schema.CollectionType {
       'api::partner-skill.partner-skill',
       'oneToMany',
       'api::partner-skill.partner-skill'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiPassiveSkillPassiveSkill extends Schema.CollectionType {
+  collectionName: 'passive_skills';
+  info: {
+    singularName: 'passive-skill';
+    pluralName: 'passive-skills';
+    displayName: 'Passive Skill';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'api::passive-skill.passive-skill', 'name'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    effect: Attribute.Enumeration<
+      ['neg-3', 'neg-2:', 'neg-1', 'none', 'plus-1', 'plus-2', 'plus-3']
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::passive-skill.passive-skill',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::passive-skill.passive-skill',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::passive-skill.passive-skill',
+      'oneToMany',
+      'api::passive-skill.passive-skill'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiPlayerStatsPlayerStats extends Schema.CollectionType {
+  collectionName: 'player_stats_list';
+  info: {
+    singularName: 'player-stats';
+    pluralName: 'player-stats-list';
+    displayName: 'Player Stats';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'api::player-stats.player-stats', 'name'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icon: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::player-stats.player-stats',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::player-stats.player-stats',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::player-stats.player-stats',
+      'oneToMany',
+      'api::player-stats.player-stats'
     >;
     locale: Attribute.String;
   };
@@ -1243,11 +1543,16 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::active-skills.active-skills': ApiActiveSkillsActiveSkills;
       'api::element.element': ApiElementElement;
       'api::item-category.item-category': ApiItemCategoryItemCategory;
+      'api::item-source.item-source': ApiItemSourceItemSource;
       'api::items-drop.items-drop': ApiItemsDropItemsDrop;
       'api::pal.pal': ApiPalPal;
+      'api::pal-stats.pal-stats': ApiPalStatsPalStats;
       'api::partner-skill.partner-skill': ApiPartnerSkillPartnerSkill;
+      'api::passive-skill.passive-skill': ApiPassiveSkillPassiveSkill;
+      'api::player-stats.player-stats': ApiPlayerStatsPlayerStats;
       'api::work-suitability.work-suitability': ApiWorkSuitabilityWorkSuitability;
     }
   }

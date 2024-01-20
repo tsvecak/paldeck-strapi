@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "item_categories",
+  "collectionName": "pal_stats_list",
   "info": {
-    "singularName": "item-category",
-    "pluralName": "item-categories",
-    "displayName": "Item Category",
-    "description": ""
+    "singularName": "pal-stats",
+    "pluralName": "pal-stats-list",
+    "displayName": "Pal Stats"
   },
   "options": {
     "draftAndPublish": true
@@ -22,11 +21,15 @@
       "targetField": "name",
       "required": true
     },
-    "items_drops": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::items-drop.items-drop",
-      "mappedBy": "item_categories"
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "description": {
+      "type": "text"
     }
   }
 }
