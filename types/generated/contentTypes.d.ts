@@ -841,6 +841,43 @@ export interface ApiElementElement extends Schema.CollectionType {
   };
 }
 
+export interface ApiItemCategoryItemCategory extends Schema.CollectionType {
+  collectionName: 'item_categories';
+  info: {
+    singularName: 'item-category';
+    pluralName: 'item-categories';
+    displayName: 'Item Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    slug: Attribute.UID<'api::item-category.item-category', 'name'>;
+    items_drops: Attribute.Relation<
+      'api::item-category.item-category',
+      'manyToMany',
+      'api::items-drop.items-drop'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::item-category.item-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::item-category.item-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiItemsDropItemsDrop extends Schema.CollectionType {
   collectionName: 'items_drops';
   info: {
@@ -884,6 +921,27 @@ export interface ApiItemsDropItemsDrop extends Schema.CollectionType {
     >;
     slug: Attribute.UID<'api::items-drop.items-drop', 'name'> &
       Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    rarity: Attribute.Enumeration<
+      ['common', 'uncommon', 'rare', 'epic', 'legendary']
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    item_categories: Attribute.Relation<
+      'api::items-drop.items-drop',
+      'manyToMany',
+      'api::item-category.item-category'
+    >;
+    source: Attribute.Enumeration<
+      ['gathering', 'crafting', 'mining', 'lumbering', 'chests', 'bushes']
+    > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -996,6 +1054,12 @@ export interface ApiPalPal extends Schema.CollectionType {
     >;
     number: Attribute.String &
       Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    habitat: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1180,6 +1244,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::element.element': ApiElementElement;
+      'api::item-category.item-category': ApiItemCategoryItemCategory;
       'api::items-drop.items-drop': ApiItemsDropItemsDrop;
       'api::pal.pal': ApiPalPal;
       'api::partner-skill.partner-skill': ApiPartnerSkillPartnerSkill;

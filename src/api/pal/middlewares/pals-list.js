@@ -43,6 +43,9 @@ module.exports = (config, { strapi }) => {
           }
         }
       },
+      habitat: {
+        fields: ['name', 'alternativeText', 'caption', 'url'],
+      },
     }
 
     await next();

@@ -61,6 +61,43 @@
       "type": "uid",
       "targetField": "name",
       "required": true
+    },
+    "rarity": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "common",
+        "uncommon",
+        "rare",
+        "epic",
+        "legendary"
+      ]
+    },
+    "item_categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::item-category.item-category",
+      "inversedBy": "items_drops"
+    },
+    "source": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "gathering",
+        "crafting",
+        "mining",
+        "lumbering",
+        "chests",
+        "bushes"
+      ]
     }
   }
 }

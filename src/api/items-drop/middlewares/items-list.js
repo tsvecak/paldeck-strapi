@@ -13,7 +13,7 @@ module.exports = (config, { strapi }) => {
       pals: {
         fields: ['name', 'slug', 'number'],
         populate: {
-          model: {
+          icon: {
             fields: ['name', 'alternativeText', 'caption', 'url'],
           },
           elements: {

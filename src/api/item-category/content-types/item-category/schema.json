@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "item_categories",
+  "info": {
+    "singularName": "item-category",
+    "pluralName": "item-categories",
+    "displayName": "Item Category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "items_drops": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::items-drop.items-drop",
+      "mappedBy": "item_categories"
+    }
+  }
+}
