@@ -51,6 +51,14 @@
         "plus-2",
         "plus-3"
       ]
+    },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
     }
   }
 }

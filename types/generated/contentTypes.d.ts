@@ -1003,7 +1003,7 @@ export interface ApiItemsDropItemsDrop extends Schema.CollectionType {
   info: {
     singularName: 'items-drop';
     pluralName: 'items-drops';
-    displayName: 'Items Drop';
+    displayName: 'Items';
     description: '';
   };
   options: {
@@ -1355,6 +1355,12 @@ export interface ApiPassiveSkillPassiveSkill extends Schema.CollectionType {
     effect: Attribute.Enumeration<
       ['neg-3', 'neg-2:', 'neg-1', 'none', 'plus-1', 'plus-2', 'plus-3']
     > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
