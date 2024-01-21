@@ -84,22 +84,6 @@
       "target": "api::item-category.item-category",
       "inversedBy": "items_drops"
     },
-    "source": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "enumeration",
-      "enum": [
-        "gathering",
-        "crafting",
-        "mining",
-        "lumbering",
-        "chests",
-        "bushes"
-      ]
-    },
     "weight": {
       "pluginOptions": {
         "i18n": {
@@ -113,6 +97,52 @@
       "relation": "manyToMany",
       "target": "api::item-source.item-source",
       "mappedBy": "items_drops"
+    },
+    "nutrition": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer"
+    },
+    "san": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer"
+    },
+    "capturePower": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer"
+    },
+    "elements": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::element.element",
+      "inversedBy": "items"
+    },
+    "power": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer"
+    },
+    "ct": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer"
     }
   }
 }

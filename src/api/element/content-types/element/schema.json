@@ -69,6 +69,12 @@
       "relation": "manyToMany",
       "target": "api::active-skills.active-skills",
       "mappedBy": "elements"
+    },
+    "items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::items-drop.items-drop",
+      "mappedBy": "elements"
     }
   }
 }

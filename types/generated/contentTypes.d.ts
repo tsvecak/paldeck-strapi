@@ -898,6 +898,11 @@ export interface ApiElementElement extends Schema.CollectionType {
       'manyToMany',
       'api::active-skills.active-skills'
     >;
+    items: Attribute.Relation<
+      'api::element.element',
+      'manyToMany',
+      'api::items-drop.items-drop'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1060,14 +1065,6 @@ export interface ApiItemsDropItemsDrop extends Schema.CollectionType {
       'manyToMany',
       'api::item-category.item-category'
     >;
-    source: Attribute.Enumeration<
-      ['gathering', 'crafting', 'mining', 'lumbering', 'chests', 'bushes']
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     weight: Attribute.Decimal &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1079,6 +1076,41 @@ export interface ApiItemsDropItemsDrop extends Schema.CollectionType {
       'manyToMany',
       'api::item-source.item-source'
     >;
+    nutrition: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    san: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    capturePower: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    elements: Attribute.Relation<
+      'api::items-drop.items-drop',
+      'manyToMany',
+      'api::element.element'
+    >;
+    power: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ct: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
