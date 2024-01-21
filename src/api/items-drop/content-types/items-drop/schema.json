@@ -152,7 +152,7 @@
       },
       "type": "string"
     },
-    "ammo": {
+    "relatedItems": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::items-drop.items-drop",
@@ -162,7 +162,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::items-drop.items-drop",
-      "inversedBy": "ammo"
+      "inversedBy": "relatedItems"
     }
   }
 }

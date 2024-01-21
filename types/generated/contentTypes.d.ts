@@ -1117,7 +1117,7 @@ export interface ApiItemsDropItemsDrop extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    ammo: Attribute.Relation<
+    relatedItems: Attribute.Relation<
       'api::items-drop.items-drop',
       'manyToMany',
       'api::items-drop.items-drop'
