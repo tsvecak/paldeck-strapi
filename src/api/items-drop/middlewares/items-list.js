@@ -13,6 +13,12 @@ module.exports = (config, { strapi }) => {
       icon: {
         fields: ['name', 'alternativeText', 'caption', 'url'],
       },
+      item_categories: {
+        fields: ['name', 'slug'],
+      },
+      item_sources: {
+        fields: ['name', 'slug'],
+      },
       pals: {
         fields: ['name', 'slug', 'number'],
         populate: {
