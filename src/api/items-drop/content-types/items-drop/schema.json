@@ -151,6 +151,18 @@
         }
       },
       "type": "string"
+    },
+    "ammo": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::items-drop.items-drop",
+      "inversedBy": "items"
+    },
+    "items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::items-drop.items-drop",
+      "inversedBy": "ammo"
     }
   }
 }

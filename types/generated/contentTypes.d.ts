@@ -1117,6 +1117,16 @@ export interface ApiItemsDropItemsDrop extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    ammo: Attribute.Relation<
+      'api::items-drop.items-drop',
+      'manyToMany',
+      'api::items-drop.items-drop'
+    >;
+    items: Attribute.Relation<
+      'api::items-drop.items-drop',
+      'manyToMany',
+      'api::items-drop.items-drop'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
