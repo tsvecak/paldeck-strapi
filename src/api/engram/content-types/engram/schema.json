@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "engrams",
+  "info": {
+    "singularName": "engram",
+    "pluralName": "engrams",
+    "displayName": "Engram"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "pointsRequired": {
+      "type": "integer"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "items",
+        "structures"
+      ]
+    },
+    "item": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::items-drop.items-drop"
+    },
+    "itemsRequired": {
+      "displayName": "itemsRequired",
+      "type": "component",
+      "repeatable": true,
+      "component": "items.items-required"
+    },
+    "technology": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::technology.technology",
+      "inversedBy": "engrams"
+    },
+    "ancientTechnology": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::technology.technology",
+      "inversedBy": "ancientEngrams"
+    }
+  }
+}
