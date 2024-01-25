@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_items_items_requireds",
+  "info": {
+    "displayName": "itemsRequired",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "requiredAmount": {
+      "type": "integer",
+      "required": true
+    },
+    "item": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::items-drop.items-drop"
+    }
+  }
+}

@@ -25,6 +25,9 @@ module.exports = (config, { strapi }) => {
           icon: {
             fields: ['name', 'alternativeText', 'caption', 'url'],
           },
+          model: {
+            fields: ['name', 'alternativeText', 'caption', 'url'],
+          },
           elements: {
             fields: ['name','slug', 'color'],
             populate: {

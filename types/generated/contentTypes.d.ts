@@ -927,6 +927,57 @@ export interface ApiElementElement extends Schema.CollectionType {
   };
 }
 
+export interface ApiEngramEngram extends Schema.CollectionType {
+  collectionName: 'engrams';
+  info: {
+    singularName: 'engram';
+    pluralName: 'engrams';
+    displayName: 'Engram';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::engram.engram', 'title'>;
+    description: Attribute.String;
+    image: Attribute.Media;
+    pointsRequired: Attribute.Integer;
+    category: Attribute.Enumeration<['items', 'structures']>;
+    item: Attribute.Relation<
+      'api::engram.engram',
+      'oneToOne',
+      'api::items-drop.items-drop'
+    >;
+    itemsRequired: Attribute.Component<'items.items-required', true>;
+    technology: Attribute.Relation<
+      'api::engram.engram',
+      'manyToOne',
+      'api::technology.technology'
+    >;
+    ancientTechnology: Attribute.Relation<
+      'api::engram.engram',
+      'manyToOne',
+      'api::technology.technology'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::engram.engram',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::engram.engram',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiItemCategoryItemCategory extends Schema.CollectionType {
   collectionName: 'item_categories';
   info: {
@@ -1246,6 +1297,12 @@ export interface ApiPalPal extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    foodAmount: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1506,6 +1563,76 @@ export interface ApiPlayerStatsPlayerStats extends Schema.CollectionType {
   };
 }
 
+export interface ApiTechnologyTechnology extends Schema.CollectionType {
+  collectionName: 'technologies';
+  info: {
+    singularName: 'technology';
+    pluralName: 'technologies';
+    displayName: 'Technology';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    level: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    engrams: Attribute.Relation<
+      'api::technology.technology',
+      'oneToMany',
+      'api::engram.engram'
+    >;
+    ancientEngrams: Attribute.Relation<
+      'api::technology.technology',
+      'oneToMany',
+      'api::engram.engram'
+    >;
+    slug: Attribute.UID<'api::technology.technology', 'title'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::technology.technology',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::technology.technology',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::technology.technology',
+      'oneToMany',
+      'api::technology.technology'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiWorkSuitabilityWorkSuitability
   extends Schema.CollectionType {
   collectionName: 'work_suitabilities';
@@ -1599,6 +1726,7 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::active-skills.active-skills': ApiActiveSkillsActiveSkills;
       'api::element.element': ApiElementElement;
+      'api::engram.engram': ApiEngramEngram;
       'api::item-category.item-category': ApiItemCategoryItemCategory;
       'api::item-source.item-source': ApiItemSourceItemSource;
       'api::items-drop.items-drop': ApiItemsDropItemsDrop;
@@ -1607,6 +1735,7 @@ declare module '@strapi/types' {
       'api::partner-skill.partner-skill': ApiPartnerSkillPartnerSkill;
       'api::passive-skill.passive-skill': ApiPassiveSkillPassiveSkill;
       'api::player-stats.player-stats': ApiPlayerStatsPlayerStats;
+      'api::technology.technology': ApiTechnologyTechnology;
       'api::work-suitability.work-suitability': ApiWorkSuitabilityWorkSuitability;
     }
   }
